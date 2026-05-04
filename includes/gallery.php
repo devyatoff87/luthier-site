@@ -8,24 +8,39 @@ function getGallery() {
         return [];
     }
 
-    $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
-    $files = scandir($dir);
-
-    foreach ($files as $file) {
-        if ($file === '.' || $file === '..') continue;
-        $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-        if (in_array($extension, $allowedExtensions)) {
+    // Bilder aus Unterordnern (Kategorien)
+    foreach (glob($dir . '*', GLOB_ONLYDIR) as $catDir) {
+        $category = basename($catDir);
+        foreach (glob($catDir . '/*.{jpg,jpeg,png,webp,gif}', GLOB_BRACE) as $img) {
             $result[] = [
-                'image' => 'images/gallery/' . $file,
-                'title' => ucfirst(str_replace(['_', '-'], ' ', pathinfo($file, PATHINFO_FILENAME))),
-                'category' => 'Galerie'
+                'image' => 'images/gallery/' . $category . '/' . basename($img),
+                'title' => ucfirst(str_replace(['_', '-'], ' ', pathinfo($img, PATHINFO_FILENAME))),
+                'category' => $category
             ];
         }
+    }
+
+    // Bilder direkt im Hauptordner (ohne Kategorie)
+    foreach (glob($dir . '*.{jpg,jpeg,png,webp,gif}', GLOB_BRACE) as $img) {
+        $result[] = [
+            'image' => 'images/gallery/' . basename($img),
+            'title' => ucfirst(str_replace(['_', '-'], ' ', pathinfo($img, PATHINFO_FILENAME))),
+            'category' => 'Galerie'
+        ];
     }
 
     return $result;
 }
 
 function getGalleryCategories() {
-    return ['Galerie'];
+    $dir = __DIR__ . '/../images/gallery/';
+    $categories = ['Galerie'];
+
+    if (!is_dir($dir)) return $categories;
+
+    foreach (glob($dir . '*', GLOB_ONLYDIR) as $catDir) {
+        $categories[] = basename($catDir);
+    }
+
+    return $categories;
 }
