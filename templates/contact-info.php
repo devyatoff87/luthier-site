@@ -9,28 +9,28 @@
     <span class="info-icon">📍</span>
     <div>
       <strong>Adresse</strong>
-      <p><?= sanitizeOutput($contact['address']) ?></p>
+      <p><?= $contact['address'] ?></p>
     </div>
   </div>
   <div class="info-item">
     <span class="info-icon">📞</span>
     <div>
       <strong>Telefon</strong>
-      <p><?= sanitizeOutput($contact['phone']) ?></p>
+      <p><?= $contact['phone'] ?></p>
     </div>
   </div>
   <div class="info-item">
     <span class="info-icon">✉️</span>
     <div>
       <strong>E-Mail</strong>
-      <p><?= sanitizeOutput($contact['email']) ?></p>
+      <p><?= $contact['email'] ?></p>
     </div>
   </div>
   <div class="info-item">
     <span class="info-icon">🕐</span>
     <div>
       <strong>Öffnungszeiten</strong>
-      <p><?= sanitizeOutput($contact['hours']) ?></p>
+      <p><?= $contact['hours'] ?></p>
     </div>
   </div>
 </div>
