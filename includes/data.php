@@ -1,8 +1,6 @@
 <?php
-// includes/data.php
-
 // ============================================
-// 1. DATEN (ROHE ARRAYS) - HIER NUR DIE DATEN!
+// 1. DATEN (ROHE ARRAYS)
 // ============================================
 
 $heroData = [
@@ -45,15 +43,6 @@ $services = [
     ]
 ];
 
-$gallery = [
-    ["image" => "images/gitarre1.jpg", "title" => "Akustikgitarre aus Ahorn", "category" => "Neubau"],
-    ["image" => "images/geige1.jpg", "title" => "Meistergeige 2024", "category" => "Neubau"],
-    ["image" => "images/repair1.jpg", "title" => "Rissreparatur bei alter Gitarre", "category" => "Reparatur"],
-    ["image" => "images/mandoline1.jpg", "title" => "Mandoline mit Palisander", "category" => "Neubau"],
-    ["image" => "images/setup1.jpg", "title" => "Setup & Intonation", "category" => "Service"],
-    ["image" => "images/restauration1.jpg", "title" => "Restauration einer Geige von 1920", "category" => "Reparatur"]
-];
-
 $testimonials = [
     [
         "name" => "Anna K.",
@@ -84,7 +73,7 @@ $contact = [
 ];
 
 // ============================================
-// 2. FUNKTIONEN (LOGIK) - HIER KEINE DATEN MEHR!
+// 2. FUNKTIONEN (LOGIK)
 // ============================================
 
 function getHeroData() {
@@ -116,24 +105,6 @@ function getServicesPreview($limit = 3) {
     return array_slice(getServices(), 0, $limit);
 }
 
-function getGallery() {
-    global $gallery;
-    return $gallery;
-}
-
-function getGalleryByCategory($category) {
-    $all = getGallery();
-    return array_filter($all, function($item) use ($category) {
-        return $item['category'] === $category;
-    });
-}
-
-function getGalleryCategories() {
-    $gallery = getGallery();
-    $categories = array_unique(array_column($gallery, 'category'));
-    return array_values($categories);
-}
-
 function getTestimonials() {
     global $testimonials;
     return $testimonials;
@@ -150,3 +121,4 @@ function getContact() {
     global $contact;
     return $contact;
 }
+?>
