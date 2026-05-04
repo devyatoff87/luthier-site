@@ -1,5 +1,6 @@
 <?php
 // init.php - Zentrale Initialisierung + Sicherheit
+require_once __DIR__ . '/template_helper.php';
 
 // Fehler anzeigen (nur in Entwicklung)
 if ($_SERVER['SERVER_NAME'] === 'localhost' || $_SERVER['SERVER_NAME'] === '127.0.0.1') {
