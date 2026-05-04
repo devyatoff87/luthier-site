@@ -1,12 +1,14 @@
 <?php
 $csrf_token = generateCSRFToken();
-include 'includes/header.php';
+include __DIR__ . '/../includes/header.php';
 
 template('page-header', [
     'title' => 'Kontakt',
     'subtitle' => 'Ich freue mich auf deine Nachricht'
 ]);
-template('contact-info', ['contact' => getContact()]);
-template('contact-form', ['csrf_token' => $csrf_token]);
+template('contact-wrapper', [
+    'contact' => getContact(),
+    'csrf_token' => $csrf_token
+]);
 
-include 'includes/footer.php';
+include __DIR__ . '/../includes/footer.php';

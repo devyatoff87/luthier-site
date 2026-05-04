@@ -1,11 +1,19 @@
 <?php
-include 'includes/header.php';
+include __DIR__ . '/../includes/header.php';
+?>
 
-template('page-header', [
-    'title' => 'Galerie',
-    'subtitle' => 'Einblicke in meine Arbeit – vergangene Projekte und aktuelle Aufträge'
-]);
-template('gallery-filters', ['categories' => getGalleryCategories()]);
-template('gallery-grid', ['gallery' => getGallery()]);
+<main>
+  <?php template('page-header', [
+        'title' => 'Galerie',
+        'subtitle' => 'Einblicke in meine Arbeit – vergangene Projekte und aktuelle Aufträge'
+    ]); ?>
 
-include 'includes/footer.php';
+  <section class="gallery-section">
+    <div class="container">
+      <?php template('gallery-filters', ['categories' => getGalleryCategories()]); ?>
+      <?php template('gallery-grid', ['gallery' => getGallery()]); ?>
+    </div>
+  </section>
+</main>
+
+<?php include __DIR__ . '/../includes/footer.php'; ?>
