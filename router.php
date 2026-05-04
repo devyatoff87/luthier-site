@@ -1,6 +1,5 @@
 <?php
 $route = $_GET['route'] ?? $_GET['page'] ?? 'home';
-if ($route === '' || $route === '/') $route = 'home';
 
 $allowedRoutes = ['home', 'services', 'gallery', 'contact', 'impressum'];
 
