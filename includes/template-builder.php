@@ -1,23 +1,17 @@
- <?php
+<?php
 /**
- * Template Helper Funktion
- *
- * Bindet ein Template ein und übergibt ihm Variablen
- *
- * @param string $name Template-Name (ohne .php)
- * @param array $data Assoziatives Array mit Variablen für das Template
+ * Template Helper – sichere Einbindung von Templates mit Variablenübergabe
  */
-function template($name, $data = []) {
-    $templatePath = __DIR__ . "/../templates/{$name}.php";
+function template(string $name, array $data = []): void {
+    $file = __DIR__ . "/../templates/{$name}.php";
 
-    if (!file_exists($templatePath)) {
-        die("Template '{$name}' nicht gefunden.");
+    if (!file_exists($file)) {
+        if ($_SERVER['SERVER_NAME'] === 'localhost') {
+            echo "<pre>Fehler: Template '{$name}' nicht gefunden in: {$file}</pre>";
+        }
+        return;
     }
 
-    // Extrahiere die Daten in lokale Variablen
     extract($data);
-
-    // Binde das Template ein
-    include $templatePath;
+    include $file;
 }
-?>
