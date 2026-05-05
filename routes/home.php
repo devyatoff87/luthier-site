@@ -5,7 +5,6 @@ $welcomeText = getWelcomeText();
 $services = getServicesPreview(3);
 $testimonials = getTestimonials();
 
-include __DIR__ . '/../includes/header.php';
 ?>
 
 <main>
@@ -63,5 +62,3 @@ include __DIR__ . '/../includes/header.php';
     </div>
   </section>
 </main>
-
-<?php include __DIR__ . '/../includes/footer.php'; ?>

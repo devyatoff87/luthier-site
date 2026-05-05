@@ -1,5 +1,4 @@
 <?php
-include 'includes/header.php';
 
 template('page-header', [
     'title' => 'Meine Dienstleistungen',
@@ -7,5 +6,3 @@ template('page-header', [
 ]);
 template('services', ['services' => getServices()]);
 template('cta-section', []);
-
-include 'includes/footer.php';

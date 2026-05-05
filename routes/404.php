@@ -1,6 +1,5 @@
 <?php
 $route = $_GET['route'] ?? $_GET['page'] ?? 'unknown';
-include 'includes/header.php';
 
 template('page-header', [
     'title' => 'Seite nicht gefunden',
@@ -8,4 +7,3 @@ template('page-header', [
 ]);
 template('404-content', ['route' => $route]);
 
-include 'includes/footer.php';

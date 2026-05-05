@@ -1,6 +1,7 @@
 <?php
 $route = $_GET['route'] ?? 'home';
 
+
 switch ($route) {
     case 'services':
         include 'routes/services.php';

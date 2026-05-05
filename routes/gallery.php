@@ -1,6 +1,3 @@
-<?php
-include __DIR__ . '/../includes/header.php';
-?>
 
 <main>
   <?php template('page-header', [
@@ -15,5 +12,3 @@ include __DIR__ . '/../includes/header.php';
     </div>
   </section>
 </main>
-
-<?php include __DIR__ . '/../includes/footer.php'; ?>

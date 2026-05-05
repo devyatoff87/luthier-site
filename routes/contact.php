@@ -1,6 +1,5 @@
 <?php
 $csrf_token = generateCSRFToken();
-include __DIR__ . '/../includes/header.php';
 
 template('page-header', [
     'title' => 'Kontakt',
@@ -10,5 +9,3 @@ template('contact-wrapper', [
     'contact' => getContact(),
     'csrf_token' => $csrf_token
 ]);
-
-include __DIR__ . '/../includes/footer.php';
