@@ -1,11 +1,20 @@
 <?php
-$route = $_GET['route'] ?? $_GET['page'] ?? 'home';
+$route = $_GET['route'] ?? 'home';
 
-$allowedRoutes = ['home', 'services', 'gallery', 'contact', 'impressum'];
-
-if (in_array($route, $allowedRoutes)) {
-    include __DIR__ . "/routes/{$route}.php";
-} else {
-    http_response_code(404);
-    include __DIR__ . "/routes/404.php";
+switch ($route) {
+    case 'services':
+        include 'routes/services.php';
+        break;
+    case 'gallery':
+        include 'routes/gallery.php';
+        break;
+    case 'contact':
+        include 'routes/contact.php';
+        break;
+    case 'impressum':
+        include 'routes/impressum.php';
+        break;
+    default:
+        include 'routes/home.php';
+        break;
 }
