@@ -11,7 +11,29 @@
         <div class="service-icon-large"><?= $service['icon'] ?></div>
         <div class="service-info">
           <h3><?= sanitizeOutput($service['name']) ?></h3>
-          <p><?= sanitizeOutput($service['description']) ?></p>
+
+          <?php
+                    $description = $service['description'] ?? '';
+                    $lines = [];
+
+                    if (is_array($description)) {
+                        $lines = $description;
+                    } elseif (is_string($description)) {
+                        $lines = explode("\n", trim($description));
+                        $lines = array_filter(array_map('trim', $lines));
+                    }
+
+                    if (!empty($lines)):
+                    ?>
+          <ul>
+            <?php foreach ($lines as $line): ?>
+            <li><?= sanitizeOutput($line) ?></li>
+            <?php endforeach; ?>
+          </ul>
+          <?php else: ?>
+          <p><?= sanitizeOutput($description) ?></p>
+          <?php endif; ?>
+
           <div class="service-details">
             <span class="price-tag">💰 <?= sanitizeOutput($service['price']) ?></span>
             <span class="duration-tag">⏱ <?= sanitizeOutput($service['duration']) ?></span>
