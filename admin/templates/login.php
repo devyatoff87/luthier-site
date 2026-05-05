@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__ . '/../includes/config.php';
+require_once __DIR__ . '/../../includes/config.php';  // ← Geht zwei Ebenen hoch
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_POST['password'] === ADMIN_PASSWORD) {
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8">
   <title>Admin Login</title>
-  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../../css/admin.css">
 </head>
 
 <body class="admin-login-body">
