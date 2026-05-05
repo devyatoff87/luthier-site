@@ -1,21 +1,18 @@
 <?php
-// Daten aus JSON-Dateien laden
-
 function loadJson($file) {
     $path = __DIR__ . "/../data/{$file}.json";
     if (!file_exists($path)) {
         return [];
     }
     $content = file_get_contents($path);
-    return json_decode($content, true);
+    $data = json_decode($content, true);
+    return is_array($data) ? $data : [];
 }
 
 function saveJson($file, $data) {
     $path = __DIR__ . "/../data/{$file}.json";
     file_put_contents($path, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 }
-
-// ========== GETTER-FUNKTIONEN ==========
 
 function getHeroData() {
     return loadJson('hero');
@@ -41,7 +38,4 @@ function getTestimonials() {
 function getContact() {
     return loadJson('contact');
 }
-
-// ========== Galerie-Funktionen (bleiben, falls benötigt) ==========
-// getGallery() und getGalleryCategories() bleiben in gallery.php
 ?>
