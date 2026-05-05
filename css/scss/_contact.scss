@@ -1,0 +1,46 @@
+.contact-section {
+  padding: 4rem 0;
+}
+
+.contact-wrapper {
+  @extend .grid-2;
+}
+
+.contact-info,
+.contact-form {
+  h2 {
+    color: $primary;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.info-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.info-icon {
+  font-size: 1.5rem;
+}
+
+.contact-form {
+  input,
+  textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid $border;
+    border-radius: 5px;
+    font-family: inherit;
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+    }
+  }
+
+  button {
+    width: 100%;
+  }
+}

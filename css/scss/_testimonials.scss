@@ -1,0 +1,43 @@
+.testimonials {
+  padding: 4rem 0;
+  background: $white;
+
+  h2 {
+    @extend .text-center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: $primary;
+  }
+}
+
+.testimonial-grid {
+  @extend .grid-auto;
+  margin-top: 2rem;
+}
+
+.testimonial-card {
+  @extend .card; // ← nur .card, nicht .card:hover
+
+  text-align: center;
+
+  // Hover separat definieren (nicht extenden)
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.stars {
+  color: #ffd700;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.quote {
+  font-style: italic;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+.customer {
+  color: $primary;
+}

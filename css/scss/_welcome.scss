@@ -1,0 +1,22 @@
+.welcome {
+  padding: 4rem 0;
+  text-align: center;
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: $primary;
+  }
+}
+
+.welcome-text {
+  max-width: 800px;
+  margin: 0 auto 1rem;
+  font-size: 1.1rem;
+}
+
+.signature {
+  font-style: italic;
+  margin-top: 1rem;
+  color: $gray;
+}

@@ -1,0 +1,87 @@
+.services-preview,
+.services-full {
+  padding: 4rem 0;
+  background: $light;
+
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: $primary;
+  }
+
+  .services-grid-full,
+  .service-grid {
+    @include grid-3;
+  }
+
+  .service-card,
+  .service-item-full {
+    @include card;
+
+    .service-image {
+      @include card-image;
+    }
+
+    .service-icon-large {
+      font-size: 4rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .service-details,
+    .service-meta {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .price,
+    .price-tag {
+      color: $primary;
+      font-weight: bold;
+    }
+
+    .service-info ul {
+      list-style: inside;
+
+      li {
+        line-height: 1.3em;
+        margin-top: 0.5em;
+      }
+    }
+
+    // Separator Line mit Mixin
+    .separator-line {
+      @include separator(1.3rem, 1.3rem, #e8e8e8);
+    }
+  }
+}
+
+// Tablet
+@media (max-width: $tablet) {
+  .services-preview,
+  .services-full {
+    .services-grid-full,
+    .service-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+}
+
+// Mobile
+@media (max-width: $mobile) {
+  .services-preview,
+  .services-full {
+    .services-grid-full,
+    .service-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .service-image {
+      height: 180px;
+    }
+  }
+}

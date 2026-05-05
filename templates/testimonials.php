@@ -5,7 +5,7 @@
 ?>
 <section class="testimonials">
   <div class="container">
-    <h2>Was meine Kunden sagen</h2>
+    <h2 class="text-center">Was meine Kunden sagen</h2>
     <div class="testimonial-grid">
       <?php foreach ($testimonials as $t): ?>
       <div class="testimonial-card">
