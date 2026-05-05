@@ -21,9 +21,9 @@
     <input type="text" name="services[<?= $index ?>][duration]"
       value="<?= htmlspecialchars($service['duration'] ?? '') ?>">
 
-    <label>Icon:</label>
-    <input type="text" name="services[<?= $index ?>][icon]" value="<?= htmlspecialchars($service['icon'] ?? '') ?>"
-      placeholder="🔨">
+    <label>Bild (Pfad):</label>
+    <input type="text" name="services[<?= $index ?>][image]" value="<?= htmlspecialchars($service['image'] ?? '') ?>"
+      placeholder="images/services/name.jpg">
 
     <button type="button" class="btn-remove-service">🗑️ Löschen</button>
     <hr>

@@ -8,7 +8,12 @@
     <div class="services-grid-full">
       <?php foreach ($services as $service): ?>
       <div class="service-item-full">
-        <div class="service-icon-large"><?= $service['icon'] ?></div>
+        <?php if (!empty($service['image'])): ?>
+        <img src="<?= $service['image'] ?>" alt="<?= sanitizeOutput($service['name']) ?>" class="service-image">
+        <?php else: ?>
+        <div class="service-icon-large">🎸</div>
+        <?php endif; ?>
+
         <div class="service-info">
           <h3><?= sanitizeOutput($service['name']) ?></h3>
 
@@ -33,7 +38,7 @@
           <?php else: ?>
           <p><?= sanitizeOutput($description) ?></p>
           <?php endif; ?>
-
+          <div class="separator-line"></div>
           <div class="service-details">
             <span class="price-tag">💰 <?= sanitizeOutput($service['price']) ?></span>
             <span class="duration-tag">⏱ <?= sanitizeOutput($service['duration']) ?></span>

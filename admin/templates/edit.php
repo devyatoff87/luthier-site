@@ -91,15 +91,28 @@ document.getElementById('add-service')?.addEventListener('click', function() {
   const div = document.createElement('div');
   div.className = 'service-card';
   div.innerHTML = `
-        <h3>Neue Dienstleistung</h3>
-        <input type="text" name="services[${index}][name]" placeholder="Name" required>
-        <textarea name="services[${index}][description]" placeholder="Beschreibung" rows="3"></textarea>
-        <input type="text" name="services[${index}][price]" placeholder="Preis">
-        <input type="text" name="services[${index}][duration]" placeholder="Dauer">
-        <input type="text" name="services[${index}][icon]" placeholder="Icon" value="🔧">
-        <button type="button" class="btn-remove-service">🗑️ Löschen</button>
-        <hr>
-    `;
+    <h3>Neue Dienstleistung</h3>
+    <input type="hidden" name="services[${index}][id]" value="${index}">
+
+    <label>Name:</label>
+    <input type="text" name="services[${index}][name]" placeholder="Name" required>
+
+    <label>Beschreibung (eine Leistung pro Zeile):</label>
+    <textarea name="services[${index}][description]" placeholder="Beschreibung" rows="5"></textarea>
+    <small class="hint">Jede Zeile wird ein Aufzählungspunkt</small>
+
+    <label>Preis:</label>
+    <input type="text" name="services[${index}][price]" placeholder="Preis">
+
+    <label>Dauer:</label>
+    <input type="text" name="services[${index}][duration]" placeholder="Dauer">
+
+    <label>Bild (Pfad):</label>
+    <input type="text" name="services[${index}][image]" placeholder="images/services/name.jpg">
+
+    <button type="button" class="btn-remove-service">🗑️ Löschen</button>
+    <hr>
+  `;
 
   const newBtn = div.querySelector('.btn-remove-service');
   newBtn.addEventListener('click', function(e) {

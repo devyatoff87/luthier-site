@@ -54,7 +54,7 @@ switch ($action) {
                             'description' => array_values($descriptionLines),
                             'price' => $service['price'] ?? '',
                             'duration' => $service['duration'] ?? '',
-                            'icon' => $service['icon'] ?? '🔧'
+                            'image' => $service['image'] ?? ''  // ← icon zu image geändert
                         ];
                     }
                 }
