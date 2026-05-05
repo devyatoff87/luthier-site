@@ -45,16 +45,12 @@ switch ($action) {
                 $newData = [];
                 foreach ($_POST['services'] as $service) {
                     if (!empty($service['name'])) {
-                        $descriptionLines = explode("\n", trim($service['description'] ?? ''));
-                        $descriptionLines = array_map('trim', $descriptionLines);
-                        $descriptionLines = array_filter($descriptionLines, fn($line) => !empty($line));
-
                         $newData[] = [
                             'name' => $service['name'],
-                            'description' => array_values($descriptionLines),
+                            'description' => parseDescription($service['description'] ?? ''),
                             'price' => $service['price'] ?? '',
                             'duration' => $service['duration'] ?? '',
-                            'image' => $service['image'] ?? ''  // ← icon zu image geändert
+                            'image' => $service['image'] ?? ''
                         ];
                     }
                 }

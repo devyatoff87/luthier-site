@@ -38,4 +38,21 @@ function getTestimonials() {
 function getContact() {
     return loadJson('contact');
 }
-?>
+
+
+/**
+* Wandelt Beschreibung (String oder Array) in ein Array von Zeilen um
+*/
+function parseDescription($input) {
+    if (is_array($input)) {
+        return $input;
+    }
+
+    if (is_string($input) && $input !== '') {
+        $lines = explode("\n", trim($input));
+        $lines = array_map('trim', $lines);
+        return array_values(array_filter($lines, fn($line) => $line !== ''));
+    }
+
+    return [];
+}
