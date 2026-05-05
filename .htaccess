@@ -1,5 +1,19 @@
 # .htaccess - Luthier Werkstatt Sicherheitsdatei
 
+
+ # Verhindere Zugriff auf alle Konfigurations- und Daten-Dateien
+<FilesMatch "\.(json|ini|log|txt|md|sql|bak)$">
+    Require all denied
+</FilesMatch>
+
+# Verhindere Zugriff auf .htaccess selbst
+<Files .htaccess>
+    Require all denied
+</Files>
+
+# Verhindere Directory Listing
+Options -Indexes
+
 # Rewrite Engine aktivieren
 RewriteEngine On
 
