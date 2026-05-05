@@ -3,7 +3,6 @@ session_start();
 
 $action = $_GET['action'] ?? 'dashboard';
 
-// Login-Prüfung
 if ($action !== 'login' && !isset($_SESSION['admin_logged_in'])) {
     header('Location: ?action=login');
     exit;
@@ -15,7 +14,9 @@ switch ($action) {
     case 'login':
         $error = null;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if ($_POST['password'] === 'admin123') {
+            $password = $_POST['password'] ?? '';
+            $storedPassword = 'admin123';
+            if ($password === $storedPassword) {
                 $_SESSION['admin_logged_in'] = true;
                 header('Location: index.php');
                 exit;
@@ -34,18 +35,46 @@ switch ($action) {
     case 'edit':
         $section = $_GET['section'] ?? 'hero';
         $data = loadJson($section);
+        if (!is_array($data)) $data = [];
+
         $success = null;
         $error = null;
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
-            $newData = [];
-            foreach ($_POST['data'] as $key => $value) {
-                $decoded = json_decode($value, true);
-                $newData[$key] = ($decoded !== null) ? $decoded : $value;
+            if ($section === 'services' && isset($_POST['services'])) {
+                $newData = [];
+                foreach ($_POST['services'] as $service) {
+                    if (!empty($service['name'])) {
+                        $descriptionLines = explode("\n", trim($service['description'] ?? ''));
+                        $descriptionLines = array_map('trim', $descriptionLines);
+                        $descriptionLines = array_filter($descriptionLines, fn($line) => !empty($line));
+
+                        $newData[] = [
+                            'name' => $service['name'],
+                            'description' => array_values($descriptionLines),
+                            'price' => $service['price'] ?? '',
+                            'duration' => $service['duration'] ?? '',
+                            'icon' => $service['icon'] ?? '🔧'
+                        ];
+                    }
+                }
+                saveJson($section, $newData);
+                $success = "Dienstleistungen wurden gespeichert!";
+                $data = loadJson($section);
+                if (!is_array($data)) $data = [];
+            } else {
+                $newData = [];
+                if (isset($_POST['data']) && is_array($_POST['data'])) {
+                    foreach ($_POST['data'] as $key => $value) {
+                        $decoded = json_decode($value, true);
+                        $newData[$key] = ($decoded !== null) ? $decoded : $value;
+                    }
+                }
+                saveJson($section, $newData);
+                $success = "Daten wurden gespeichert!";
+                $data = loadJson($section);
+                if (!is_array($data)) $data = [];
             }
-            saveJson($section, $newData);
-            $success = "Daten wurden gespeichert!";
-            $data = loadJson($section);
         }
 
         $title = ucfirst($section) . ' bearbeiten';
